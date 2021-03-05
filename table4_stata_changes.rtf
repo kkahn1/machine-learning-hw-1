@@ -1,0 +1,35 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 clear\
+set more off\
+set matsize 1000\
+capture log close\
+\
+log using reg-results, text replace\
+\
+import excel using "C:\\Users\\kpk5494\\Downloads\\EDTG_Replication Data.xls", sheet("Sheet1") firstrow\
+\
+sort gid year\
+by gid: gen t=_n\
+gen dstar=0\
+replace dstar=1 if end==1 \
+gen x1=t\
+gen x2=t^2	\
+\
+gen lsize=ln(peak_size)\
+gen terpc=terr_POP\
+gen tcpa=total_casualties/total_atks\
+replace tcpa=0 if total_atk==0\
+gen ly=log(gdppercapita)\
+gen lpop=ln(pop) \
+gen op=tradeopenness2010usd\
+gen govsp=GovernmentspendingGDP2010us\
+gen polity1=polity+10\
+gen polity1sqr=polity1^2\
+gen ethn2=ethnic^2\
+gen lelev=log(elevation)}
